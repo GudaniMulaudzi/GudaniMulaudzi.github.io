@@ -1,0 +1,79 @@
+<!--doctype html-->
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE-edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<title>RKE4A</title>
+</head>
+<body >
+<br />
+	<h3 align="center" style="background-color:white" >
+		<font face="Georgia" color="#000000" size="20"><strong>
+			WELCOME
+			</strong>
+		</font><br/>
+	</h3 >
+	<h3 align="left" style="background-image: url('getty_610749178_299691.jpg');background-size: auto;background-position: center; background-repeat: no-repeat;" >
+	</h3>
+	<br/>
+<h1 align="center" style="color:black;font-size:40px"><u>About Smart Device</u></h1>
+
+<p>write something about the smart device here </p>
+
+<h1 align="center" style="color:blackfont-size:40px"><u>Smart Device Charts</u></h1>
+<p>
+<div class="iframe-container">
+	<tr><td>
+	<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1337674/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=300&type=line&update=15"></iframe>
+	</td>
+	<td>
+	<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1337674/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=300&type=line&update=15"></iframe>
+	</td>
+	<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1337674/charts/3?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=300&type=line&update=15"></iframe>
+	
+	
+</div>
+<style>
+  .iframe-container {
+		text-align:center;
+  		width:100%;
+  }
+</style>
+</p>
+<h1 align="center" style="color:back;font-size:40px"><u>Smart Device Control Centre</u></h1>
+<p> LED DEVICE CONTROL CENTER</p>
+<form align = "center">
+	<label for="fname">Input the LED index over here:</label><br>
+	<input type="number" id="LEDNUMBER" name="quantity" min = "0" max = "15"><br>
+  </form>
+  <br>
+  <form align = "center" action="" method = "get">
+	<label for="favcolor">Please input a colour of choice</label>
+	<input type="color" id="hercolor" name="favcolor" value="#00B140"><br><br>
+	<button type="button" id="D1-on" class="button button1" >Update Matrix</button>
+  </form>
+  <div class="iframe-container" align = "center">
+	  <br><br>
+  <iframe  align = center width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1338479/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+  <br><br>
+  <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1338479/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+  </div>
+<h1 align="center" style="color:;font-size:40px"><u>Contact Us</u></h1>
+<p> put on your contact details here</p>
+</body>
+<script>
+	document.getElementById('D1-on').addEventListener('click', function() {
+					var ip = document.getElementById('hercolor').value;
+					var ip2 = ip.slice(1,)
+					ip2 = parseInt(ip2,16).toString()
+					var LEDValue = document.getElementById('LEDNUMBER').value;
+					var url = "https://api.thingspeak.com/update?api_key=EYEON5OR9U5D4JJA&field1="+LEDValue.toString()+"&field2="+ip2
+					alert(url)
+					$.getJSON(url, function(data) {
+						console.log(data);
+					});
+			});
+	</script>
+</html>
